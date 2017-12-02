@@ -139,9 +139,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="backgroundImage" destination="Jr4-bd-ynE" id="DmD-sh-wxp"/>
-                        <outlet property="mainContentView" destination="BIF-Xn-YKv" id="TSI-23-ZOC"/>
-                        <outlet property="tableView" destination="ke1-zx-0ph" id="ghw-zF-AC5"/>
+                        <outlet property="centreWeatherDisplay" destination="BIF-Xn-YKv" id="485-Qc-tCq"/>
+                        <outlet property="weatherBackgroundImageGif" destination="Jr4-bd-ynE" id="o90-uN-g7b"/>
+                        <outlet property="weatherForecastTableView" destination="ke1-zx-0ph" id="eeh-pG-e1O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

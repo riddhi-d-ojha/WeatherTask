@@ -19,7 +19,7 @@ class HomeViewController:   UIViewController,
     fileprivate var cache = NSCache<NSURL, UIImage>()
     
     fileprivate let cellIdentifier = "Cell"
-    let locationManager = FetchWeatherLocation()
+    var locationManager:FetchWeatherLocation?=nil
     var weather: WeatherDetails!
     var forecastListArray : NSMutableArray = []
     @IBOutlet weak var weatherBackgroundImageGif: UIImageView!
@@ -27,13 +27,14 @@ class HomeViewController:   UIViewController,
     @IBOutlet weak var centreWeatherDisplay: MainContentView!
     
     override func viewDidLoad() {
+        locationManager = FetchWeatherLocation(delegate: self)
         super.viewDidLoad()
         weather = WeatherDetails(delegate: self)
         self.weatherForecastTableView.dataSource = self
         self.weatherForecastTableView.delegate = self
         setBackGroundImage()
         // Make a class which will tell you current location, Also check whether user has enable the location or not. If not then show him the warning. . Yes done that in the method following
-        locationManager.getLocation()
+        locationManager?.getLocation()
     }	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
