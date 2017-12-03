@@ -26,12 +26,12 @@ struct WeatherData {
     private let temp: Double
     var tempCelsius: Double {
         get {
-            return temp - 273.15
+            return temp.absoluteToCelsius()
         }
     }
     var tempFahrenheit: Double {
         get {
-            return (temp - 273.15) * 1.8 + 32
+            return temp.absoluteToFahrenheit()
         }
     }
     let humidity: Int

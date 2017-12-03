@@ -33,7 +33,6 @@ class HomeViewController:   UIViewController,
         self.weatherForecastTableView.dataSource = self
         self.weatherForecastTableView.delegate = self
         setBackGroundImage()
-        // Make a class which will tell you current location, Also check whether user has enable the location or not. If not then show him the warning. . Yes done that in the method following
         locationManager?.getLocation()
     }	
     override func didReceiveMemoryWarning() {
@@ -75,7 +74,7 @@ class HomeViewController:   UIViewController,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! WeatherTablevViewCell
-        var forecastDict = self.forecastListArray[indexPath.row] as! NSDictionary
+        let forecastDict = self.forecastListArray[indexPath.row] as! NSDictionary
         let weatherArray = forecastDict["weather"]! as! NSArray
         let weatherDescDict = weatherArray[0] as! [String: AnyObject]
         cell.showCellContectWithData(forecastDict: forecastDict)

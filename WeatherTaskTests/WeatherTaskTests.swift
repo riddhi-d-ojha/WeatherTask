@@ -9,15 +9,31 @@
 import XCTest
 @testable import WeatherTask
 
-class WeatherTaskTests: XCTestCase {
-    var weatherTest = WeatherDetails.self
+class WeatherTaskTests: XCTestCase,
+                        WeatherDetailsDelegate{
+   
+    var locationTest:FetchWeatherLocation?=nil
+    var weatherTest:WeatherDetails?=nil
     
     override func setUp() {
         super.setUp()
-//        weatherTest.getWeatherByCityName(city: "Dubai")
+        locationTest = FetchWeatherLocation(delegate: self as! WeatherLocationDelegate)
+        weatherTest = WeatherDetails(delegate: self as WeatherDetailsDelegate)
+        locationTest?.getLocation()
+        weatherTest?.fetchWeatherInfo(city: "Dubai")
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
+    func didGetWeather(weather: WeatherData) {
+//        let printText = String : "Successfully fetched weather details" + weather
+//        print(printText)
+        
+    }
+    
+    func didNotGetWeather(error: NSError) {
+        
+    }
+        
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
