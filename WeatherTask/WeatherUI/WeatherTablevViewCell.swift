@@ -13,12 +13,15 @@ class WeatherTablevViewCell: UITableViewCell {
     @IBOutlet weak var weatherText: UILabel!
     @IBOutlet weak var weatherDescription: UILabel!
     
-    func showCellContectWithData(forecastDict: NSDictionary)  {
+    func showCellContectWithData(forecastDict: NSDictionary) -> NSDictionary {
         let minimumMaximumTempText = maximumMinimumTemp(forecastDict: forecastDict)
+        let weatherArray = forecastDict["weather"]! as! NSArray
+        let weatherDescDict = weatherArray[0] as! [String: AnyObject]
         let futureDate = NSDate(timeIntervalSince1970: forecastDict["dt"] as! TimeInterval)
         
         self.weatherText?.text = futureDate.dateToString(date: futureDate)
         self.weatherDescription?.text = minimumMaximumTempText
+        return weatherDescDict as NSDictionary
     }
     
     // MARK: - Utility methods

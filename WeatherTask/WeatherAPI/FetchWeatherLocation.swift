@@ -24,9 +24,7 @@ class FetchWeatherLocation: NSObject, CLLocationManagerDelegate {
         self.delegate = delegate
     }
     // MARK: - CLLocationManagerDelegate and related methods
-    func getLocation() {
-        // Lets discuss scenario. User has disable the location. The you show him the popup.Now user go to setting and come back by enable permission. What will happen ??? Ohh. It will not reload. I suppose that is a bug.Noyou need to handle that
-        
+    func getLocation() {        
         guard CLLocationManager.locationServicesEnabled() else {
             let alert = UIAlertController()
             alert.showSimpleAlert(

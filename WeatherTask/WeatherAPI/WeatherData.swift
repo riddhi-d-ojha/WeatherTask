@@ -45,10 +45,6 @@ struct WeatherData {
     
     init(weatherData: [String: AnyObject]) {
         //City dict to fetch - city name
-        // dont assume that data always coming from server. The following will crash if city does not containdue to some errpr. OK? Hmm. But I have added a condition in view controller. But I suppose this is a better option. Yes this is better because the code you hsould build can be used by other without any dependecney. Doo with All Parameter
-        
-        // Next assigment use ObjectMapper or some other library for data parsing.
-        // Must change ! in ? in all of the following.
         let cityDict = weatherData["city"] as! [String: AnyObject]
         city = cityDict["name"] as! String
         country = cityDict["country"] as! String
@@ -66,13 +62,11 @@ struct WeatherData {
         
         let weatherArray = weatherData["list"]! as! NSArray
         
-        //looping through all the json objects in the array teams
-        // why no following loop start from zero.?? Because the first value from array is the current display, and then the next day. In the array. This causes confusion for code reader. Pass turple in that case. ok
+        //looping through all the json objects in the response forecast array
         for i in 1 ..< weatherArray.count{
             let weeklyForecastData = weatherData["list"]![i] as! [String: AnyObject]
             let dateText = weeklyForecastData["dt_txt"] as! String
             let currentDateText = todayWeatherData["dt_txt"] as! String
-            // Move 10 into constant. Make following condition into method as same is using below. ok. g
             if(String(dateText.prefix(10)) == String(currentDateText.prefix(10)))//it is forecast for today
             {
                 hourlyForecastArray.add(weeklyForecastData)
@@ -114,6 +108,4 @@ struct WeatherData {
             rainfallInLast3Hours = nil
         }
     }
-    
-    
 }

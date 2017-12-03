@@ -25,10 +25,6 @@ class WeatherDetails {
     init(delegate: WeatherDetailsDelegate) {
         self.delegate = delegate
     }
-    // Add comments in each method
-    /**
-     * like apple does..  where th.
- **/
     func getWeatherByCoordinates(latitude: Double, longitude: Double) {
         let weatherRequestURL = NSURL(string: "\(APPURL.Domains.weatherURL)?APPID=\(APPURL.APIKEY.APIKey)&lat=\(latitude)&lon=\(longitude)")!
         getWeather(weatherRequestURL: weatherRequestURL)
@@ -41,11 +37,9 @@ class WeatherDetails {
     private func getWeather(weatherRequestURL: NSURL) {
         dataTask = defaultSession.dataTask(with: weatherRequestURL as URL)  { data, response, error in
             defer { self.dataTask = nil }
-
             guard data != nil else{
                 return
             }
-            // Add swift guard statement here.  First you need to check the error and if JSON is not valid then return. Understand? YES
             if let error = error {
                 // Handle any kind of error while trying to get data from the server.
                 self.delegate.didNotGetWeather(error: error as NSError)

@@ -75,9 +75,7 @@ class HomeViewController:   UIViewController,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! WeatherTablevViewCell
         let forecastDict = self.forecastListArray[indexPath.row] as! NSDictionary
-        let weatherArray = forecastDict["weather"]! as! NSArray
-        let weatherDescDict = weatherArray[0] as! [String: AnyObject]
-        cell.showCellContectWithData(forecastDict: forecastDict)
+        let weatherDescDict = cell.showCellContectWithData(forecastDict: forecastDict) 
         let weatherRequestURL = NSURL(string: "\(APPURL.Domains.imageURL)/\(weatherDescDict["icon"] as! String).png")!
         let image = cache.object(forKey: weatherRequestURL  as NSURL)
         cell.weatherIcon.image = image
